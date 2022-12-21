@@ -2,6 +2,7 @@ import "./App.css";
 import StudentList from "./components/StudentList";
 import ClassInfo from "./components/ClassInfo";
 import { useState } from "react";
+import NewStudentForm from "./components/NewStudentForm";
 
 function App() {
   
@@ -54,6 +55,8 @@ function App() {
       onUpdateStudent = {updateStudentData}
       onDeleteAllStudents = {deleteAllStudents}
       ></StudentList>
+
+      <NewStudentForm></NewStudentForm>
     </main>
   );
 };
