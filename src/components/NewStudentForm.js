@@ -1,6 +1,7 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
-const NewStudentForm = () => {
+const NewStudentForm = (props) => {
     const [formFields, setFormFields] = useState({
         name: '',
         email: ''
@@ -20,8 +21,22 @@ const NewStudentForm = () => {
         });
     };
 
+    const onFormSubmit = (event) => {
+        event.preventDefault();
+
+        props.addStudentCallback({
+            nameData: formFields.name,
+            emailData: formFields.email
+        });
+
+        setFormFields({
+            name: '',
+            email: '',
+        });
+    };
+
     return (
-        <form>
+        <form onSubmit = {onFormSubmit}>
             <div>
                 <label htmlFor = "fullName">Name:</label>
                 <input name = "fullName" 
@@ -34,9 +49,15 @@ const NewStudentForm = () => {
                 value = {formFields.email}
                 onChange = {onEmailChange} />
             </div>
-            <input type = "submit" value = "Add Student" />
+            <input type = "submit" 
+            value = "Add Student"
+             />
         </form>
     );
+};
+
+NewStudentForm.propTypes = {
+    addStudentCallback: PropTypes.func.isRequired
 };
 
 export default NewStudentForm;
